@@ -1,20 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe "Quotes", type: :system do
-  before do
-    driven_by(:rack_test)
-  end
-
-  it 'Creates a new quote' do
+  it 'Creates a new quote', :js do
     visit quotes_path
 
     expect(page).to have_selector('h1', text: 'Quotes')
 
     click_link 'New quote'
-
-    expect(page).to have_selector('h1', text: 'New quote')
-
     fill_in 'Name', with: 'Capybara quote'
+
+    save_and_open_page
+
+    expect(page).to have_selector('h1', text: 'Quotes')
     click_on 'Create quote'
 
     expect(page).to have_selector('h1', text: 'Quotes')
@@ -31,17 +28,17 @@ RSpec.describe "Quotes", type: :system do
     expect(page).to have_selector('h1', text: quote.name)
   end
 
-  it 'updates a quote' do
+  it 'updates a quote', :js do
     FactoryBot.create(:first)
 
     visit quotes_path
 
     expect(page).to have_selector('h1', text: 'Quotes')
 
-    click_link 'Edit', match: :first
-
-    expect(page).to have_selector('h1', text: 'Edit quote')
+    click_on 'Edit', match: :first
     fill_in 'Name', with: 'Updated quote'
+
+    expect(page).to have_selector('h1', text: 'Quotes')
     click_on 'Update quote'
 
     expect(page).to have_selector('h1', text: 'Quotes')

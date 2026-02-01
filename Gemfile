@@ -31,6 +31,7 @@ end
 
 group :development do
   gem "hotwire-spark"
+  gem "launchy"
   gem "web-console"
 end
 
