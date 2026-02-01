@@ -9,8 +9,6 @@ RSpec.describe "Quotes", type: :system do
     click_link 'New quote'
     fill_in 'Name', with: 'Capybara quote'
 
-    save_and_open_page
-
     expect(page).to have_selector('h1', text: 'Quotes')
     click_on 'Create quote'
 
