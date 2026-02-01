@@ -11,6 +11,7 @@ gem "kamal", require: false
 gem "pg", "~> 1.1"
 gem "propshaft"
 gem "puma", ">= 5.0"
+gem "redis"
 gem "simple_form"
 gem "solid_cable"
 gem "solid_cache"
