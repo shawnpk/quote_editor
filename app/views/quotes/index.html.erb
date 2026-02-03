@@ -6,7 +6,9 @@
     <%= link_to "New quote", new_quote_path, class: "btn btn--primary", data: { turbo_frame: dom_id(Quote.new) } %>
   </div>
 
-  <%= turbo_frame_tag Quote.new %>
+  <%= turbo_frame_tag Quote.new do %>
+    <%= render 'empty_state' if @quotes.none? %>
+  <% end %>
 
   <div id='quotes'>
     <%= render @quotes %>
