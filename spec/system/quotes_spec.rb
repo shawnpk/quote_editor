@@ -1,6 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe "Quotes", type: :system do
+  let(:accountant) { FactoryBot.create(:accountant) }
+
+  before do
+    visit new_user_session_path
+
+    fill_in 'Email', with: accountant.email
+    fill_in 'Password', with: accountant.password
+    click_button 'Log in'
+
+    expect(page).to have_current_path(root_path, wait: 5)
+  end
+
   it 'Creates a new quote', :js do
     visit quotes_path
 
@@ -17,7 +29,7 @@ RSpec.describe "Quotes", type: :system do
   end
 
   it 'shows a quote' do
-    quote = FactoryBot.create(:first)
+    quote = FactoryBot.create(:first, company: accountant.company)
 
     visit quotes_path
 
@@ -27,7 +39,7 @@ RSpec.describe "Quotes", type: :system do
   end
 
   it 'updates a quote', :js do
-    FactoryBot.create(:first)
+    FactoryBot.create(:first, company: accountant.company)
 
     visit quotes_path
 
@@ -44,7 +56,7 @@ RSpec.describe "Quotes", type: :system do
   end
 
   it 'destroys a quote' do
-    quote = FactoryBot.create(:first)
+    quote = FactoryBot.create(:first, company: accountant.company)
 
     visit quotes_path
 
