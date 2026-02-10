@@ -1,5 +1,6 @@
 User.destroy_all
 Quote.destroy_all
+LineItemDate.destroy_all
 Company.destroy_all
 
 Company.create!([
@@ -17,4 +18,9 @@ User.create!([
   { email: "accountant@kpmg.com", password: "password", password_confirmation: "password", company: Company.first },
   { email: "manager@kpmg.com", password: "password", password_confirmation: "password", company: Company.first },
   { email: "eavesdropper@pwc.com", password: "password", password_confirmation: "password", company: Company.last }
+])
+
+LineItemDate.create!([
+  { quote: Quote.first, date: Date.current },
+  { quote: Quote.first, date: Date.current + 1.week }
 ])
