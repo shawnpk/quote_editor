@@ -6,8 +6,8 @@
       </h2>
 
       <div class="line-item-date__actions">
-        <%= button_to "Delete", [quote, line_item_date], method: :delete, class: "btn btn--light", form: { data: { turbo_confirm: 'Are you sure?' } } %>
-        <%= link_to "Edit", [:edit, quote, line_item_date], class: "btn btn--light" %>
+        <%= button_to "Delete", [quote, line_item_date], method: :delete, class: "btn btn--light", form: { data: { turbo_confirm: 'Are you sure?', turbo_frame: :_top } } %>
+        <%= link_to "Edit", [:edit, quote, line_item_date], class: "btn btn--light", data: { turbo_frame: :_top } %>
       </div>
     </div>
 
@@ -22,7 +22,7 @@
       <%= render line_item_date.line_items, quote: quote, line_item_date: line_item_date %>
 
       <div class="line-item-date__footer">
-        <%= link_to "Add item", [:new, quote, line_item_date, :line_item], class: "btn btn--primary" %>
+        <%= link_to "Add item", [:new, quote, line_item_date, :line_item], class: "btn btn--primary", data: { turbo_frame: :_top } %>
       </div>
     </div>
   </div>
